@@ -1,20 +1,17 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: nginx-sf
+  name: nginx-deployment
 spec:
   replicas: 3
-  selector:
-    matchLabels:
-      app: nginx-sf  # Соответствует метке в шаблоне
   template:
     metadata:
       labels:
-        app: nginx-sf  # Соответствует метке в селекторе
+        app: nginx
     spec:
       containers:
         - name: nginx
-          image: nginx:1.21.1-alpine
+          image: nginx:latest
           ports:
             - containerPort: 80
           volumeMounts:
@@ -24,4 +21,4 @@ spec:
       volumes:
         - name: secret-volume
           secret:
-            secretName: auth-basic
+            secretName: имя-вашего-секрета
